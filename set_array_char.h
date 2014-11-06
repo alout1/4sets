@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <string.h>
 #include <algorithm>
-//#include <random>
 
 #ifndef SET_ARRAY_CHAR_H
 #define	SET_ARRAY_CHAR_H
@@ -16,7 +15,7 @@ namespace set_array_char
   private:
       char* Data;
       bool contains(char c);
-      size_t size() { return strlen(Data); }
+      inline size_t size() { return strlen(Data); }
       void shuffle(char *array, size_t n); 
       
   public:     

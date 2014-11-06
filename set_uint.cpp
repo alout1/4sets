@@ -38,14 +38,16 @@ namespace set_uint
         
         Set& Set::operator~() 
         {
-                Data ^= ~0u; // X xor 1 = not X
-                return *this;
+            Set* s = new Set(*this);
+            s->Data ^= ~0u; // X xor 1 = not X
+            return *s;
         }
         
         Set& Set::operator&(Set& rhs)
         {
-                this->Data &=  rhs.Data;
-                return *this;
+            Set* s = new Set(*this);
+            s->Data &=  rhs.Data;
+            return *s;
         }
         
         std::ostream& operator<<(std::ostream& out, Set& s)

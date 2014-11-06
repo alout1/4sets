@@ -59,15 +59,13 @@ Set::~Set()
 
 Set& Set::operator =(Set rhs) 
 {
-    //std::cout << "old op=\n";
     std::swap(Data, rhs.Data);
     return *this;
 }
 
-Set& Set::operator ~()
+Set& Set::operator ~() 
 {
-    //std::cout<<"op~\n";
-    int new_size = MAX_SIZE - this->size() + 2; // +2 ???
+    int new_size = MAX_SIZE - this->size() + 2; 
     char* new_data = new char[new_size]; 
     int i,j;
     
@@ -76,15 +74,13 @@ Set& Set::operator ~()
             continue;
         else
             new_data[j++] = Vocabulary[i];
-    
-    delete[] this->Data;
-    this->Data = new_data;
-    return *this;
+   
+    Set* s = new Set(new_data);
+    return *s;
 }
 
 Set& Set::operator &(Set& rhs)
 {  
-   //std::cout<<"op&\n"; 
    char new_data[MAX_SIZE];
    int i,j;
    

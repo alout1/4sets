@@ -32,37 +32,36 @@ namespace set_array_bool {
         
         Set::Set(Set& s)
         {
-                for (int i = 0; i < MAX_SIZE; ++i)
-                {
-                        this->Data[i] = s.Data[i];
-                }
+            for (int i = 0; i < MAX_SIZE; ++i)
+            {
+                this->Data[i] = s.Data[i];
+            }
         }
         
         Set& Set::operator =(Set rhs)
         {
-                for (int i = 0; i < MAX_SIZE; ++i)
-                {
-                        this->Data[i] = rhs.Data[i];
-                }
-                return *this;
+            std::swap(this->Data, rhs.Data);
+            return *this;
         }
         
         Set& Set::operator~() 
         {
-                for (int i = 0; i < MAX_SIZE; ++i)
-                {
-                        Data[i] = !Data[i];
-                }
-                return *this;
+            Set* s = new Set(*this);
+            for (int i = 0; i < MAX_SIZE; ++i)
+            {
+                s->Data[i] = !this->Data[i];
+            }
+            return *s;
         }
         
         Set& Set::operator&(Set& rhs)
         {
-                for (int i = 0; i < MAX_SIZE; ++i)
-                {
-                        this->Data[i] &=  rhs.Data[i];
-                }
-                return *this;
+            Set* s = new Set(*this);
+            for (int i = 0; i < MAX_SIZE; ++i)
+            {
+                s->Data[i] &=  rhs.Data[i];
+            }
+            return *s;
         }
         
         std::ostream& operator<<(std::ostream& out, Set& s)
@@ -74,7 +73,7 @@ namespace set_array_bool {
                         if (s.Data[i] == true)
                         {
                                 out << Vocabulary[i]; 
-                                f = 1;          // переделать :/
+                                f = 1;         
                         }
                 }
                 if (f==0)

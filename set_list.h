@@ -44,7 +44,6 @@ namespace set_list
         Set& operator~();
         Set& operator&(Set& rhs);
         friend std::ostream& operator<<(std::ostream& out, Set& s);
-        
     }; // class Set
 } // namespace set_list
 

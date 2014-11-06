@@ -20,7 +20,7 @@ namespace set_list
         char* new_data = new char[MAX_SIZE + 1];
         strcpy(new_data, Vocabulary);
         shuffle(new_data, MAX_SIZE);
-        int new_size = rand()%MAX_SIZE+1;
+        int new_size = rand() % MAX_SIZE + 1;
         for (int i = 0; i < new_size; ++i)
         {
                 push_back(new_data[i]);
@@ -178,16 +178,15 @@ namespace set_list
     
     Set& Set::operator ~()
     {
-        Set S("");
-        for (int i = 0; i < MAX_SIZE + 1; ++i) // +1 ?
+        Set *S = new Set("");
+        for (int i = 0; i < MAX_SIZE + 1; ++i) 
         {
             if (!this->contains(Vocabulary[i]))
             {
-                S.push_back(Vocabulary[i]);
+                S->push_back(Vocabulary[i]);
             }
         }
-       (*this) = S; // o_o
-       return *this ;
+       return *S ;
     }
     
     Set& Set::operator &(Set& rhs)
