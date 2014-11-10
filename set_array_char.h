@@ -16,7 +16,6 @@ namespace set_array_char
       char* Data;
       bool contains(char c);
       inline size_t size() { return strlen(Data); }
-      void shuffle(char *array, size_t n); 
       
   public:     
       Set();

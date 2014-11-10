@@ -17,15 +17,7 @@ namespace set_list
     Set::Set()
     {
         begin = nullptr;
-        char* new_data = new char[MAX_SIZE + 1];
-        strcpy(new_data, Vocabulary);
-        shuffle(new_data, MAX_SIZE);
-        int new_size = rand() % MAX_SIZE + 1;
-        for (int i = 0; i < new_size; ++i)
-        {
-                push_back(new_data[i]);
-        }
-        delete[] new_data;
+        end = nullptr;
     }
     
     Set::Set(const char* new_data)
@@ -130,21 +122,6 @@ namespace set_list
         return i;
     }
     
-    void Set::shuffle(char *array, size_t n)
-{ 
-    if (n > 1) 
-    {
-        size_t i;
-        for (i = 0; i < n - 1; i++) 
-        {
-          size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
-          char t = array[j];
-          array[j] = array[i];
-          array[i] = t;
-        }
-    }
-}
-    
     bool Set::contains(char c)
     {
         Element* q = begin;
@@ -163,6 +140,9 @@ namespace set_list
     
     Set& Set::operator=(Set& rhs)
     {
+        if (this == &rhs)
+            return *this;
+        
         int lhs_size = this->size(); 
         int rhs_size = rhs.size(); 
         for(int i = 0; i < lhs_size; ++i)

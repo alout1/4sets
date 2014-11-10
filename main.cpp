@@ -15,20 +15,26 @@
 using namespace std;
 using namespace std::chrono;
 
+char* getRandomStr();
+
 int main(int argc, char** argv) 
 {
     srand(time(NULL));
     steady_clock::time_point t1, t2; 
     duration<double> time_span;
     
+    char *a = getRandomStr(),
+         *b = getRandomStr(),
+         *c = getRandomStr(),
+         *d = getRandomStr();
+    cout << "A = " << a << "\nB = " << b << "\nC = " << c << "\nD = " << d << "\n";
+    
     cout<<"======================== char array\n";
     {
         t1 = steady_clock::now();
         
         using namespace set_array_char;
-        //Set A("123ABCDEF"), B("BCED45678"), C("ABC23456"), D("9876532"), E("ABCDEF");
-        Set A, B, C, D, E;
-        cout << "A = " << A << "\nB = " << B << "\nC = " << C << "\nD = " << D << "\n";
+        Set A(a), B(b), C(c), D(d), E;
         E = A & (~B) & (~(C & D));
         cout << "E = " << E << '\n';
         
@@ -43,9 +49,7 @@ int main(int argc, char** argv)
         t1 = steady_clock::now();
         
         using namespace set_list;
-        //Set A("123ABCDEF"), B("BCED45678"), C("ABC23456"), D("9876532"), E("ABCDEF");
-        Set A, B, C, D, E;
-        cerr << "A = " << A << "\nB = " << B << "\nC = " << C << "\nD = " << D << "\n";
+        Set A(a), B(b), C(c), D(d), E;
         E = A & (~B) & (~(C & D));
         cout << "E = " << E << '\n';
         
@@ -60,9 +64,7 @@ int main(int argc, char** argv)
         t1 = steady_clock::now();
         
         using namespace set_array_bool;
-        //Set A("123ABCDEF"), B("BCED45678"), C("ABC23456"), D("9876532"), E("ABCDEF");
-        Set A, B, C, D, E;
-        cout << "A = " << A << "\nB = " << B << "\nC = " << C << "\nD = " << D << "\n";
+        Set A(a), B(b), C(c), D(d), E;
         E = A & (~B) & (~(C & D));
         cout << "E = " << E << '\n';
         
@@ -76,9 +78,7 @@ int main(int argc, char** argv)
         t1 = steady_clock::now();
         
         using namespace set_uint;
-        //Set A("123ABCDEF"), B("BCED45678"), C("ABC23456"), D("9876532"), E("ABCDEF");
-        Set A, B, C, D, E;
-        cout << "A = " << A << "\nB = " << B << "\nC = " << C << "\nD = " << D << "\n";
+        Set A(a), B(b), C(c), D(d), E;
         E = A & (~B) & (~(C & D));
         cout << "E = " << E << '\n';
         
@@ -90,3 +90,14 @@ int main(int argc, char** argv)
     return 0;
 }
 
+#include <random>
+char* getRandomStr()
+{
+    std::string str("0123456789ABCDEF");
+    default_random_engine generator(system_clock::now().time_since_epoch().count());
+    std::shuffle(str.begin(), str.end(), generator);
+    int NewSize = generator() % 16 + 1;
+    char* NewStr = new char[NewSize];
+    memcpy(NewStr, str.data(), NewSize);
+    return NewStr;
+}

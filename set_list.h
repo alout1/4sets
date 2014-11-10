@@ -28,7 +28,6 @@ namespace set_list
         Element* begin;
         Element* end;
         bool contains(char c);
-        void shuffle(char *array, size_t n);
         
     public:
         Set();

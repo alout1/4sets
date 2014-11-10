@@ -14,7 +14,7 @@ namespace set_uint
         
         Set::Set()
         {
-                Data = rand() % 0xFFFF;
+                Data = 0u;
         }
         
         Set::Set(char* str)

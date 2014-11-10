@@ -15,7 +15,7 @@ namespace set_array_bool {
         {
                 for (int i = 0; i < MAX_SIZE; ++i)
                 {
-                        Data[i] = rand() % 2;
+                        Data[i] = 0;
                 }
         }
         

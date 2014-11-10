@@ -10,34 +10,14 @@ bool Set::contains(char c)
     return false;
 }
 
-void Set::shuffle(char *array, size_t n) // http://stackoverflow.com/a/6127606
-{ 
-    if (n > 1) 
-    {
-        size_t i;
-        for (i = 0; i < n - 1; i++) 
-        {
-          size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
-          char t = array[j];
-          array[j] = array[i];
-          array[i] = t;
-        }
-    }
-}
 char& Set::operator [](int index)
 {
-    return Data[index];
+        return Data[index];
 }
 
 Set::Set()
 {
-    char* new_data = new char[MAX_SIZE + 1];
-    strcpy(new_data, Vocabulary);
-    shuffle(new_data, MAX_SIZE);
-    int newsize = rand()%MAX_SIZE+1;
-    Data = new char[newsize];
-    memcpy(Data, new_data, newsize +1);
-    delete[] new_data;
+    Data = nullptr;
 }
 
 Set::Set(const char* new_data)
@@ -90,9 +70,7 @@ Set& Set::operator &(Set& rhs)
    new_data[j] = '\0';
    
    Set* s = new Set(new_data);
-   return *s; 
-   
-   return *this;         
+   return *s;        
 }
 
 std::ostream& operator<<(std::ostream& out, Set& s)
