@@ -87,16 +87,20 @@ int main(int argc, char** argv)
         cout  << "time used: " << time_span.count() << " seconds." << endl;
     } 
     
+    delete[] a;
+    delete[] b;
+    delete[] c;
+    delete[] d;
     return 0;
 }
-
+//===========================================
 #include <random>
 char* getRandomStr()
 {
     std::string str("0123456789ABCDEF");
     default_random_engine generator(system_clock::now().time_since_epoch().count());
     std::shuffle(str.begin(), str.end(), generator);
-    int NewSize = generator() % 16 + 1;
+    int NewSize = generator() % 14 + 3;  // 3 <= s <= 16
     char* NewStr = new char[NewSize];
     memcpy(NewStr, str.data(), NewSize);
     return NewStr;
